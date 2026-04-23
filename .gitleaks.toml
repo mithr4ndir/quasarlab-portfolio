@@ -1,0 +1,41 @@
+title = "quasarlab-portfolio gitleaks config"
+
+# Extend gitleaks default rule pack. Do not disable default rules.
+[extend]
+useDefault = true
+
+# Additional patterns tuned for this repo.
+[[rules]]
+id = "quasarlab-private-ipv4"
+description = "Private IPv4 addresses should not appear in a public repo"
+regex = '''\b(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3})\b'''
+tags = ["ip", "internal", "leak"]
+
+[[rules]]
+id = "quasarlab-1password-op-secret"
+description = "1Password op:// secret references"
+regex = '''op://[A-Za-z0-9_\- ]+/[A-Za-z0-9_\- ]+/[A-Za-z0-9_\- ]+'''
+tags = ["1password", "secret"]
+
+[[rules]]
+id = "quasarlab-cloudflare-tunnel-token"
+description = "Cloudflare tunnel token"
+regex = '''eyJ[A-Za-z0-9_\-]{40,}\.[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{10,}'''
+tags = ["cloudflare", "jwt"]
+
+[allowlist]
+description = "Allowlist for documentation examples"
+paths = [
+  '''(^|/)screenshots/''',
+  '''(^|/)docs/.*\.md$''',
+  '''(^|/)lessons-learned/.*\.md$''',
+  '''(^|/)architecture/.*\.md$''',
+  '''(^|/)README\.md$''',
+]
+regexes = [
+  '''example\.com''',
+  '''example\.internal''',
+  '''redacted''',
+  '''REDACTED''',
+  '''TODO''',
+]
