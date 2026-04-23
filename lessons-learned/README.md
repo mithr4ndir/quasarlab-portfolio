@@ -5,18 +5,31 @@ same template so they are easy to scan and compare.
 
 ## Index
 
+Flagship retrospectives (filled in, ready to read):
+
+- [elastic-to-loki-migration.md](elastic-to-loki-migration.md) the
+  flagship retrospective: why the lab moved off the Elastic Stack to
+  Loki + Vector + Wazuh.
+- [pve-ha-outage.md](pve-ha-outage.md) 2026-04-13 HA fence, nine hours
+  of silent VM outage, four-day multi-repo remediation.
+- [secrets-iac-1password-eso.md](secrets-iac-1password-eso.md) how the
+  lab does secrets-as-code on 1Password, and the defense-in-depth we
+  added after two rate-limit incidents.
 - [alertmanager-spof.md](alertmanager-spof.md) single Alertmanager was a
-  silent SPOF; fixed with HA + PDB, dead-man's-switch pending.
+  silent SPOF. HA + PDB + external dead-man's-switch.
+- [grafana-k8s-migration.md](grafana-k8s-migration.md) Grafana moved
+  from VM to Kubernetes, SQLite to PostgreSQL via pgloader, old VM
+  decommissioned by the full checklist.
+
+Shorter retrospectives (partial, need more detail from the user):
+
 - [jellyfin-library-split.md](jellyfin-library-split.md) mixed media
-  library split into typed Movies + TV Shows after a Jellyfin 10.11 upgrade.
+  library split into typed Movies + TV Shows after a Jellyfin 10.11
+  upgrade.
 - [hdr-flicker-hdmi.md](hdr-flicker-hdmi.md) G16 + 5K2K HDR flicker was
   not software; it was a marginal DP-to-USB-C cable.
-- [grafana-k8s-migration.md](grafana-k8s-migration.md) Grafana VM moved
-  into Kubernetes; Angular plugin CrashLoop follow-up.
 - [arr-rollout-restart.md](arr-rollout-restart.md) why `kubectl rollout
   restart` kills *arr apps on NFS and what to do instead.
-- [elastic-to-loki-migration.md](elastic-to-loki-migration.md) the
-  flagship retrospective: why the lab moved off the Elastic Stack.
 
 ## Template
 

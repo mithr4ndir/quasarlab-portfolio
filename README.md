@@ -14,7 +14,7 @@ public and curated for portfolio and community use.
 |---------------|-------------------------------------------------------------------------------|
 | Compute       | Proxmox (HA pair), Kubernetes (3 control-plane nodes, HAProxy/Keepalived VIP) |
 | Storage       | TrueNAS, NFS, PostgreSQL                                                      |
-| Observability | Prometheus, Alertmanager, Grafana, Loki + Promtail, Wazuh (SIEM)              |
+| Observability | Prometheus, Alertmanager, Grafana, Loki + Vector, Wazuh (SIEM)                |
 | GitOps        | ArgoCD, Helm rendered via Kustomize, values.yaml as source of truth           |
 | Automation    | Ansible, Terraform                                                            |
 | Secrets       | 1Password + External Secrets Operator                                         |
@@ -23,6 +23,35 @@ public and curated for portfolio and community use.
 > Logging was previously on the Elastic Stack. The lab moved to Loki + Wazuh;
 > the reasoning is documented in
 > [lessons-learned/elastic-to-loki-migration.md](lessons-learned/elastic-to-loki-migration.md).
+
+## Highlights
+
+A few stories worth reading first. Each is a filled-in retrospective,
+not a placeholder:
+
+- [Elastic to Loki + Vector + Wazuh migration](lessons-learned/elastic-to-loki-migration.md)
+  Full log-platform swap. Parallel run, clean cutover, complete
+  decommissioning. Freed tens of GBs of RAM and collapsed two panes
+  of glass into one.
+- [Proxmox HA fence, nine hours of silence](lessons-learned/pve-ha-outage.md)
+  A real production-shape incident. HA fenced a node, VMs didn't come
+  back, and the alert path was quietly broken. Four-day remediation
+  across 21 merged PRs: boot-race fix, alert regex anchoring, 1Password
+  rate-limit hardening, etcd defrag automation, Kubernetes upgrade, and
+  an external dead-man's-switch.
+- [Secrets as code on 1Password, and what the rate limit taught us](lessons-learned/secrets-iac-1password-eso.md)
+  Defense-in-depth for a rate-limited secret backend: caching, kill
+  switch, scoped service accounts, Prometheus quota observability,
+  ESO circuit breaker, explicit rollout ordering. Includes the "the
+  loud failure is not always the cause" bit.
+- [Alertmanager single point of failure](lessons-learned/alertmanager-spof.md)
+  A six-hour outage with zero alerts delivered. HA Alertmanager +
+  PDB + external heartbeat. "I would notice" is not a monitoring
+  strategy.
+- [Grafana VM to Kubernetes migration](lessons-learned/grafana-k8s-migration.md)
+  Moved state (SQLite to PostgreSQL via pgloader), moved workload
+  (kube-prometheus-stack Helm), moved clients (MetalLB + NPM), and
+  decommissioned the old VM by the full checklist.
 
 ## Repository map
 
