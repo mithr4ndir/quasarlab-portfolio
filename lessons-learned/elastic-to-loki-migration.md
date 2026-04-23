@@ -84,8 +84,8 @@ rules; Loki does not. Replacing Wazuh with "Loki plus rules I write
 myself" would have been rebuilding a SIEM badly.
 
 Promtail was briefly considered. Vector won for three reasons: one tool
-covering VM agent, Kubernetes DaemonSet, and external Aggregator roles;
-VRL transforms do real work (label shaping, noise drops) at the edge
+covers both the VM agent role and the Kubernetes DaemonSet role; VRL
+transforms do real work (label shaping, noise drops) at the edge
 instead of pushing the mess into Loki's cardinality; clearer
 observability story on the shipper itself.
 
@@ -112,8 +112,6 @@ Loki + Vector took over everything Elastic was doing for general logs:
   stays sane.
 - **Vector agent** on every non-Kubernetes VM, shipping journald and
   `/var/log/**/*.log`.
-- **Vector Aggregator** as the ingress for external syslog and for
-  devices that cannot host an agent, exposed on a MetalLB IP.
 - **Grafana dashboards**: VM Log Explorer and Kubernetes Log Explorer,
   both with host/namespace/app filters. LogQL
   `| json | line_format` for clean message rendering. NVIDIA GPU noise

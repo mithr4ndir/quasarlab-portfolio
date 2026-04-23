@@ -37,14 +37,15 @@ open to new work. Previously senior systems engineer at Uber, with
 several Bay Area infrastructure roles before that. Certifications:
 CCNA, MCITP, MCSE, VCP5-DCV.
 
-This repo is the public side of my homelab, quasarlab. The code that
-runs the lab lives in private sibling repositories; what you see here
-is the architecture, the design decisions, and the retrospectives.
-I run the lab the way I prefer to work: everything in code, one source
-of truth per system, observability designed before the workload ships,
-and post-incident writeups that are honest about what broke and why.
-Start with Field reports and the lessons-learned section, that is where
-the work actually happened.
+This repo is the documentation half of my homelab, quasarlab. The code
+that runs the lab lives in public sibling repositories (linked below);
+what you see here is the architecture, the design decisions, and the
+retrospectives tied together in one portfolio-shaped surface. I run the
+lab the way I prefer to work: everything in code, one source of truth
+per system, observability designed before the workload ships, and
+post-incident writeups that are honest about what broke and why. Start
+with Field reports and the lessons-learned section, that is where the
+work actually happened.
 
 On the side: open-source astronomy tooling contributions 🔭 (lsdb,
 lightkurve, yt), Habitat for Humanity of Greater Miami volunteer since
@@ -86,7 +87,7 @@ flowchart TB
 
     subgraph Observability
       P[Prometheus] --> AM[Alertmanager]
-      V[Vector agents + aggregator] --> L[(Loki)]
+      V[Vector agents] --> L[(Loki)]
       L --> G[Grafana]
       P --> G
       W[Wazuh SIEM]
@@ -162,23 +163,28 @@ not a placeholder. Status shields give you the headline at a glance:
 
 ## Dramatis personae 🗺️
 
-The lab is many repos working in concert. Each has a distinct role. The
-ones below that are marked private stay private on purpose (credentials,
-DR runbooks, TrueNAS state); this repo is the curated public surface.
+The lab is many repos working in concert. Each has a distinct role.
+Most are public and linkable. Two stay private on purpose (credentials,
+disaster-recovery runbooks, TrueNAS state); this portfolio is the
+curated narrative that ties them together.
 
-- **ansible-quasarlab** the enchanter. Host config, inventory, and
-  playbooks. Every Proxmox host, TrueNAS, and non-Kubernetes VM answers
-  to it. Dynamic inventory from the Proxmox API, 1Password for
-  credentials with a caching wrapper and kill switch in front.
-- **terraform-quasarlab** the architect. Lays the groundwork in
-  VMs, Proxmox resources, and Cloudflare records. 1Password provider for
-  sensitive variables; no `*.tfvars` in git.
-- **k8s-argocd** the city. ArgoCD app-of-apps, every workload
-  manifest, the place where services actually live. Helm charts
-  rendered through Kustomize with `values.yaml` as the source of truth.
-- **observability-quasarlab** the watchtower. Grafana dashboards,
-  Prometheus rules, Loki config, log pipelines as code. Alerts leave
-  here and arrive in Discord themed by severity and flavor.
+- [**ansible-quasarlab**](https://github.com/mithr4ndir/ansible-quasarlab)
+  the enchanter. Host config, inventory, and playbooks. Every Proxmox
+  host, TrueNAS, and non-Kubernetes VM answers to it. Dynamic inventory
+  from the Proxmox API, 1Password for credentials with a caching wrapper
+  and kill switch in front.
+- [**terraform-quasarlab**](https://github.com/mithr4ndir/terraform-quasarlab)
+  the architect. Lays the groundwork in VMs, Proxmox resources, and
+  Cloudflare records. 1Password provider for sensitive variables; no
+  `*.tfvars` in git.
+- [**k8s-argocd**](https://github.com/mithr4ndir/k8s-argocd) the city.
+  ArgoCD app-of-apps, every workload manifest, the place where services
+  actually live. Helm charts rendered through Kustomize with
+  `values.yaml` as the source of truth.
+- [**observability-quasarlab**](https://github.com/mithr4ndir/observability-quasarlab)
+  the watchtower. Grafana dashboards, Prometheus rules, Loki config, log
+  pipelines as code. Alerts leave here and arrive in Discord themed by
+  severity and flavor.
 - **truenas-config-backup** (private) the librarian. Scheduled
   TrueNAS config snapshots so a failed upgrade is recoverable.
 - **quasarlab-disaster-recovery** (private) the war room. Procedures

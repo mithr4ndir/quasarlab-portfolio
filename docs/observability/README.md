@@ -12,13 +12,11 @@ pane of glass, with Alertmanager as the single alert router.
 ## Logging infrastructure
 
 - Loki (SingleBinary) is the primary log store.
-- Vector is the collector. Three shapes, one tool:
+- Vector is the collector. Two shapes, one tool:
   - Vector DaemonSet in Kubernetes for container logs, with kube-system and
     monitoring namespaces excluded to keep Loki's label cardinality sane.
   - Vector agent on every non-Kubernetes VM, shipping `journald` and
     `/var/log/**/*.log` to Loki.
-  - Vector Aggregator for external sources: syslog from network gear and
-    anything that cannot run an agent.
 - Wazuh for security-focused log collection, file integrity monitoring, and
   SIEM use cases. Runs alongside Loki, not replacing it.
 - Grafana is the single UI for logs and metrics. Loki is a Grafana
