@@ -52,6 +52,9 @@ not a placeholder:
   Moved state (SQLite to PostgreSQL via pgloader), moved workload
   (kube-prometheus-stack Helm), moved clients (MetalLB + NPM), and
   decommissioned the old VM by the full checklist.
+- [Never rollout-restart *arr apps on NFS](lessons-learned/arr-rollout-restart.md)
+  SQLite + NFS + rolling restart corrupts the database. The operating
+  rule is scale-0-then-1. Short story, sharp takeaway.
 
 ## Repository map
 
@@ -86,7 +89,7 @@ Work on astronomy and data tooling that came out of this lab:
 ## Contact
 
 - GitHub: [@mithr4ndir](https://github.com/mithr4ndir)
-- LinkedIn: TODO
+- LinkedIn: [chris-ladino-93654254](https://www.linkedin.com/in/chris-ladino-93654254/)
 
 ## License
 

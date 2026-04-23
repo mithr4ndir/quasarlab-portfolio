@@ -20,6 +20,8 @@ Flagship retrospectives (filled in, ready to read):
 - [grafana-k8s-migration.md](grafana-k8s-migration.md) Grafana moved
   from VM to Kubernetes, SQLite to PostgreSQL via pgloader, old VM
   decommissioned by the full checklist.
+- [arr-rollout-restart.md](arr-rollout-restart.md) why `kubectl rollout
+  restart` kills *arr apps on NFS and what to do instead.
 
 Shorter retrospectives (partial, need more detail from the user):
 
@@ -28,8 +30,6 @@ Shorter retrospectives (partial, need more detail from the user):
   upgrade.
 - [hdr-flicker-hdmi.md](hdr-flicker-hdmi.md) G16 + 5K2K HDR flicker was
   not software; it was a marginal DP-to-USB-C cable.
-- [arr-rollout-restart.md](arr-rollout-restart.md) why `kubectl rollout
-  restart` kills *arr apps on NFS and what to do instead.
 
 ## Template
 
