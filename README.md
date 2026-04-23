@@ -121,6 +121,17 @@ flowchart TB
 > Vector + Wazuh; the reasoning is documented in
 > [lessons-learned/elastic-to-loki-migration.md](lessons-learned/elastic-to-loki-migration.md).
 
+## A look inside
+
+<p align="center">
+  <a href="screenshots/README.md"><img src="screenshots/quasarlab-overview.png" alt="QuasarLab overview dashboard" width="80%"></a>
+</p>
+
+The [screenshots/](screenshots/README.md) folder is a short guided
+tour: lab overview, Proxmox VM health, Kubernetes CoreDNS, the
+Loki-backed log explorer, and both the Grafana and ARA views of
+Ansible runs. Captures come from the live lab, not a mockup.
+
 ## Field reports
 
 A few stories worth reading first. Each is a filled-in retrospective,
