@@ -14,7 +14,8 @@ available, no infrastructure dependency.
 - Redact hostnames, IPs, and user data before committing. If in doubt,
   redact.
 - Prefer PNG over JPEG for UI screenshots.
-- Keep file sizes under 1 MB; the pre-commit `check-added-large-files`
-  hook caps at 1024 KB.
+- Keep file sizes sensible; the pre-commit `check-added-large-files`
+  hook caps at 4096 KB. Hero-class images may run larger, but most
+  dashboard captures should stay well under 1 MB.
 
 TODO add the first set of captures.
